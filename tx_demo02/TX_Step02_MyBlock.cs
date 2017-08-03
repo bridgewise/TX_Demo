@@ -63,9 +63,7 @@ namespace TX_Demo
 
             PaperLayoutGroup paperGroup = new PaperLayoutGroup();
             paperGroup.AddToPaperList_Right600(paper);
-
-            //paperGroup.ExportToCAD(null, null);
-            ExportToCAD.ExportToAutoCAD(null, paperGroup);
+            paperGroup.ExportToCAD(null, null);
         }
 
     }

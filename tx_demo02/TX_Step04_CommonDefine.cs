@@ -44,7 +44,12 @@ namespace TX_Demo
 
             double scale = block.style.BlockScale;      ///当前图块的比例
 
-            // 图层
+            ///标注的注脚距离标注线的尺寸
+            ///              100
+            ///   |----------------------------|   -|
+            ///   |                            |    | DimFirstLayer
+            ///   |                            |   _|
+            ///
             double dimLayerDist1 = block.style.DimFirstLayer;   ///标注的偏移
             double dimLayerDist2 = block.style.DimSecondLayer;
             double dimLayerDist3 = block.style.DimThirdLayer;

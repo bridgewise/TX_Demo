@@ -54,7 +54,7 @@ namespace TX_Demo
             TxPolyline pl2 = AcadAssist.ConvertToTxPolyline(arc);
 
 
-            /// 多义线
+            /// 多义线 ---- 比较重要的几何对象,含有直线和圆弧，如果是圆弧则 bulge 参数不等于0
             TxPolyline pl1 = new TxPolyline();
             pl1.AddVertexAt(0, new Point2d(0, 0), 0, 0, 0);
             pl1.AddVertexAt(1, new Point2d(0, 500), 0, 0, 0);
@@ -62,7 +62,7 @@ namespace TX_Demo
             pl1.AddVertexAt(3, new Point2d(300, 100), 0.5, 0, 0); /// 这个参数不是0，则是曲线
             pl1.AddVertexAt(4, new Point2d(0, 0), 0, 0, 0);
 
-
+            ///
             List<Point3d> points = new List<Point3d>();
             TX_Math.Array2.Resize(ref points, 5);
             points[0] = new Point3d(0, 0, 0);
@@ -142,7 +142,7 @@ namespace TX_Demo
             block.AddText(new Point3d(800, 800, 0), "Hello1");
             block.AddText(new Point3d(900, 900, 0), "Hello2", block.style.RealTextHeigth, Math.PI * 0.25, CommonLayer.dimlayer, TxTextHorizontalMode.TextRight, TxTextVerticalMode.TextTop);
 
-            ///加标题
+            ///加标题 -- 下面有两条线，右边有比例1:50
             block.AddTitle(new Point3d(500, 500, 0), "图块标题"); /// 应该考虑图块放在上面还是下面 
 
 

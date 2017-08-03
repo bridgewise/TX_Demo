@@ -51,6 +51,7 @@ namespace TX_Demo
         [CommandMethod("tx_step06")]
         public static void TestDrawCommond()
         {
+            if (StyleInit.StyleInitMethod() == false) return;
 
             Step06_Table bk1 = new Step06_Table();
             bk1.DimScale = 50;  ///设定图块比例

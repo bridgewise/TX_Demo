@@ -96,6 +96,30 @@ namespace TX_Demo
             //ist_curves.ExtendBackToCurve(...)
             block.AddSteelEntity(ist_curves);
 
+
+            /// SteelbarLoopMutil  --- 箍筋的处理
+            /// SteelbarDotPalXYDimension dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1, new Point3d(), SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
+
+            /// 水平箭头
+            SteelbarHLineDimension dim1 = SteelDimFactory.CreateHLineDimension(ist1, new Point3d(0, 1000, 0), new Point3d(500, 1000, 0), true);
+            block.AddSteelEntity(dim1);
+
+            /// 竖直箭头
+            SteelbarVLineDimension dim2 = SteelDimFactory.CreateVLineDimension(ist1, new Point3d(500, 1000, 0), new Point3d(500, 2000, 0), true);
+            block.AddSteelEntity(dim2);
+
+            /// 斜向的线
+            SteelbarDotPalXYDimensionNew dim3 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1.GetDotPoints(), new Point3d(), SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
+            dim3.SteelDimLeaderLenNotScale = 10;  ///  标注线如果要加长可以设置这个参数
+            dim3.additionalDimLen = 500;          ///  标注线如果要加长可以设置这个参数
+            block.AddSteelEntity(dim3);
+            ///  
+
+            // --- 钩子钢筋---- 左右都有箭头
+            //SteelbarConnect dim4 = SteelDimFactory.CreateSteelConnectDimension(..,_//
+            
+            
+            
             /// ======================== 3.标注钢筋点 ====================================
             /// SteelbarOneDimension                         ----- 从一个点引出钢筋标注，是最简单的一种
             /// SteelbarDotPalXYDimension
@@ -104,14 +128,6 @@ namespace TX_Demo
             /// SteelbarVLineDimension，SteelbarHLineDimension，SteelbarXLineDimension   --- 拉一根线来标注（通常用于标注线）钢筋；可以多个箭头；三个差不多，差别在于水平，竖直，斜向
             /// SteelbarConnectDimension            ------------- 配合SteelbarConnect使用
             ///
-
-            /// SteelbarLoopMutil  --- 箍筋的处理
-            /// SteelbarDotPalXYDimension dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1, new Point3d(), SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
-
-            SteelbarDotPalXYDimensionNew dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1.GetDotPoints(), new Point3d(), SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
-            dim1.SteelDimLeaderLenNotScale = 10;  ///  标注线如果要加长可以设置这个参数
-            dim1.additionalDimLen = 500;          ///  标注线如果要加长可以设置这个参数
-            ///  
         }
 
 

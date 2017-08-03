@@ -16,7 +16,8 @@ namespace TX_Demo
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            TX_Step01_Form dlg = new TX_Step01_Form();
+            TX_Step05_Form.entData = new TX_Step04_EntityData();
+            TX_Step05_Form dlg = new TX_Step05_Form();
             dlg.ShowDialog();
 
         }

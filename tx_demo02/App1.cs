@@ -18,8 +18,8 @@ namespace TX_TOOLBOX
 
         public void Initialize()
         {
-            ExportToCAD.iexportToCAD = new ExportToCAD_Imp();
-
+            PaperLayoutGroup.iExportToCAD = new ExportToCAD_Imp();
+            //ExportToCAD.iexportToCAD = new ExportToCAD_Imp();
         }
 
         public void Terminate()

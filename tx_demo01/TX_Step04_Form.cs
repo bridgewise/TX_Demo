@@ -43,7 +43,7 @@ namespace TX_Demo
             }
         }
 
-        public static TX_Step04_EntityData entData = new TX_Step04_EntityData();
+        public static TX_Step04_EntityData entData = null;
 
 
 

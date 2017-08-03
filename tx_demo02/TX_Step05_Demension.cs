@@ -68,6 +68,8 @@ namespace TX_Demo
         [CommandMethod("tx_step05")]
         public static void TestDrawCommond()
         {
+            if (StyleInit.StyleInitMethod() == false) return;
+
 
             Step05_Demension bk1 = new Step05_Demension();
             bk1.DimScale = 50;  ///设定图块比例

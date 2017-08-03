@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TX_BaseKit2, Version=0.9.6431.28095, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="TX_IllustratorNet, Version=1.0.1.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -77,6 +81,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App1.cs" />
+    <Compile Include="TX_Step01_Autocad.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TX_Step02_MyBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -98,7 +105,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TX_Step01_Autocad.cs" />
     <Compile Include="TX_Step03_Geometry.cs" />
     <Compile Include="TX_Step04_CommonDefine.cs" />
     <Compile Include="TX_Step05_Demension.cs" />
