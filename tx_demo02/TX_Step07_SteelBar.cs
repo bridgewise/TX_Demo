@@ -38,6 +38,12 @@ namespace TX_Demo
             Point3d structPt2 = structPt1 + vectUnit.MultiplyBy(2000);      ///点可以是点和向量相加
             Point3d structPt3 = structPt1 + vectPer.MultiplyBy(2000);
 
+            // ======================== 定义钢筋分类 ====================================
+            // 点钢筋  -- 沿着直线布置，交叉位置会布置一根钢筋，中间间距相等，起始和终止位置间距调整
+            // 线钢筋  -- 中间间距相等，起始和终止位置间距调整
+            // 钩子钢筋  hook  --- 与点钢筋有对应关系，放在点钢筋边上    SteelConnect 
+            // 箍筋    -- 三种布置方式，目前只有在绘图之后才知道最终形状
+            // 骨架钢筋  
 
 
             // ======================== 1.定义钢筋 ====================================
@@ -49,6 +55,7 @@ namespace TX_Demo
 
             double BHC_DOT = 40;
             double BHC_LIN = 40;
+
             // ======================== 2.绘制钢筋点 ====================================
 
             /// ------ 绘制点钢筋 ---------
@@ -79,14 +86,19 @@ namespace TX_Demo
             //st_dot4.SetDots_MoveVertiToPolyLine(....
 
 
+            /// SteelbarOneDimension                         ----- 从一个点引出钢筋标注，是最简单的一种
 
-            // ======================== 3.绘制钢筋点 ====================================
+            /// SteelbarDotPalXYDimension
+
+            Point3d dim1_pnt = new Point3d(500, 500, 0);
+            SteelbarDotPalXYDimension dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1.GetDotPoints(), dim1_pnt, SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
+
+            //SteelbarDotDimension dim2 = SteelDimFactory.CreateSteelDotTDimension();
+
+            // ======================== 3.绘制钢筋线 ====================================
             /// ------ 绘制线钢筋 ---------
             /// SteelLine,SteelPolyline   ----- 单根线
             /// SteelLines,SteelCurves    ----- 多根线
-            /// SteelbarConnect            ------------- 钩子钢筋，格几个钢筋点布置一个钩子钢筋
-            /// SteelbarConnectLoop           --- 忘记了，以后补充
-            /// SteelbarLoopMutil         -----------  箍筋，比其他要复杂一些
             SteelLines ist_line1 = SteelFactory.CreateSteelParalLine(ist3, structPt1, structPt3, BHC_LIN, 45, 2000);
             block.AddSteelEntity(ist_line1);
 
@@ -98,7 +110,6 @@ namespace TX_Demo
 
 
             /// SteelbarLoopMutil  --- 箍筋的处理
-            /// SteelbarDotPalXYDimension dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1, new Point3d(), SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
 
             /// 水平箭头
             SteelbarHLineDimension dim1 = SteelDimFactory.CreateHLineDimension(ist1, new Point3d(0, 1000, 0), new Point3d(500, 1000, 0), true);
@@ -113,23 +124,62 @@ namespace TX_Demo
             dim3.SteelDimLeaderLenNotScale = 10;  ///  标注线如果要加长可以设置这个参数
             dim3.additionalDimLen = 500;          ///  标注线如果要加长可以设置这个参数
             block.AddSteelEntity(dim3);
-            ///  
 
-            // --- 钩子钢筋---- 左右都有箭头
-            //SteelbarConnect dim4 = SteelDimFactory.CreateSteelConnectDimension(..,_//
-            
-            
-            
-            /// ======================== 3.标注钢筋点 ====================================
-            /// SteelbarOneDimension                         ----- 从一个点引出钢筋标注，是最简单的一种
-            /// SteelbarDotPalXYDimension
-            ///
-            /// ======================== 3.标注钢筋线 ====================================
+
             /// SteelbarVLineDimension，SteelbarHLineDimension，SteelbarXLineDimension   --- 拉一根线来标注（通常用于标注线）钢筋；可以多个箭头；三个差不多，差别在于水平，竖直，斜向
+
+
+            // ======================== 3.绘制钢筋线 ====================================
+            /// ------ 绘制线钢筋 ---------
+            /// SteelbarConnect            ------------- 钩子钢筋，格几个钢筋点布置一个钩子钢筋
+            /// SteelbarConnectLoop           --- 忘记了，以后补充
+            /// SteelbarLoopMutil         -----------  箍筋，比其他要复杂一些
+
+            /// 
+            // --- 钩子钢筋---- 左右都有箭头
+            //SteelbarConnectDimension dim4 = SteelDimFactory.CreateSteelConnectDimension(ist_ .CreateSteelConnectDimension(..,_)//
             /// SteelbarConnectDimension            ------------- 配合SteelbarConnect使用
+
+
+
+            /// ======================== 3.标注钢筋点 ====================================
             ///
+            ///
+
+
         }
 
+        public void DemoSteelbarConnect_OnPmDot()
+        {
+            ////#region 钩子钢筋绘制，和钩子钢筋标注
+            //////钩子钢筋
+            ////Point3d dimArrowPoint = new Point3d((stPnt6.X + steelPnt4.X) * 0.5, steelPnt4.Y - block.style.DimSteelCirOffset, 0);
+            ////List<TxLine> st_hook_hori_line = st_hori_upside_all_forhook.GetTxLines();
+            ////List<TxLine> st_hook_vert_line = st_vert_upside.GetTxLines();
+            //////钩子钢筋交叉点的线
+            ////List<TxCurve> st_hook_hori_lineX = AcadAssist.GetLineGapBG(st_hook_hori_line, dotGapY, false, false); //注意这两个变量的使用时这样的[dotGapX,dotGapY]
+            ////List<TxCurve> st_hook_vert_lineX = AcadAssist.GetLineGapBG(st_hook_vert_line, dotGapX, false, false); //注意这两个变量的使用时这样的[dotGapX,dotGapY]
+            ////
+            //////----------测试用
+            //////for (int i = 0; i < st_hook_hori_lineX.Count; i++) block.AddCurve(st_hook_hori_lineX[i], CommonLayer.gslayer);
+            //////for (int i = 0; i < st_hook_vert_lineX.Count; i++) block.AddCurve(st_hook_vert_lineX[i], CommonLayer.gslayer);
+            /////
+            ////SteelDotsArray st_hook_dot = SteelFactory.CreateSteelDots(ist_ct_hook, st_hook_hori_lineX, st_hook_vert_lineX);
+            ////st_hook_dot.Move(new Vector3d(block.style.RealDotRadiuB, block.style.RealDotRadiuB, 0));
+            ////List<Point3d> dimArrowPointAll = st_hook_dot.GetDotPoints();
+            ////List<Point3d> dimArrowPointPicked = new List<Point3d>();
+            ////if (dimArrowPointAll.Count > 1) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - 1]);
+            ////if (dimArrowPointAll.Count > 2) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - 2]);
+            ////if (dimArrowPointAll.Count > 3) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - 3]);
+            ////if (dimArrowPointAll.Count > 4) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - 4]);
+            ////if (dimArrowPointAll.Count > st_hook_vert_lineX.Count + 1) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - st_hook_vert_lineX.Count - 1]);
+            ////if (dimArrowPointAll.Count > st_hook_vert_lineX.Count + 4) dimArrowPointPicked.Add(dimArrowPointAll[dimArrowPointAll.Count - st_hook_vert_lineX.Count - 4]);
+            ////SteelbarDotDimension dim_st_hook = SteelDimFactory.CreateSteelDotTDimension(st_hook_dot, dimArrowPointPicked, SteelbarDotDimension.LineType.ONEDOT_ROW, false, false);
+            ////dim_st_hook.SetDimOneDotPointByPointValue(new Point3d((steelPnt4.X + stPnt6.X) * 0.5, steelPnt4.Y - block.style.DimSteelCirOffset, 0));
+            ////dim_st_hook.SteelDimLeaderLenNotScale = dim_st_hook.SteelDimLeaderLenNotScale * 1.5;//---标注线延长些
+            ////block.AddSteelEntity(st_hook_dot, dim_st_hook);
+            ////#endregion
+        }
 
         public SteelTable GetSteelTalbe()
         {
