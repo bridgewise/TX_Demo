@@ -41,7 +41,7 @@ namespace TX_Demo
             // ======================== 定义钢筋分类 ====================================
             // 点钢筋  -- 沿着直线布置，交叉位置会布置一根钢筋，中间间距相等，起始和终止位置间距调整
             // 线钢筋  -- 中间间距相等，起始和终止位置间距调整
-            // 钩子钢筋  hook  --- 与点钢筋有对应关系，放在点钢筋边上    SteelConnect 
+            // 钩子钢筋  hook  --- 与点钢筋有对应关系，放在点钢筋边上    SteelConnect ,所以是几个点(nGap)布置一个钩子钢筋，如果不整除，程序自动调整，起终点都会固定布置一个钩子钢筋，但是可以通过设置，是否绘制起终点钩子钢筋
             // 箍筋    -- 三种布置方式，目前只有在绘图之后才知道最终形状
             // 骨架钢筋  
 
@@ -91,7 +91,7 @@ namespace TX_Demo
             /// SteelbarDotPalXYDimension
 
             Point3d dim1_pnt = new Point3d(500, 500, 0);
-            SteelbarDotPalXYDimension dim1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1.GetDotPoints(), dim1_pnt, SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
+            SteelbarDotPalXYDimensionNew dim_dots1 = SteelDimFactory.CreateSteelParallDimensionNew(ist1, st_dot1.GetDotPoints(), dim1_pnt, SteelbarDotPalXYDimensionNew.LineType.PALX_OFF_DOT_RIGHT, SteelbarDotPalXYDimensionNew.ArrowType.ARR_TOSTART);
 
             //SteelbarDotDimension dim2 = SteelDimFactory.CreateSteelDotTDimension();
 
@@ -129,14 +129,15 @@ namespace TX_Demo
             /// SteelbarVLineDimension，SteelbarHLineDimension，SteelbarXLineDimension   --- 拉一根线来标注（通常用于标注线）钢筋；可以多个箭头；三个差不多，差别在于水平，竖直，斜向
 
 
-            // ======================== 3.绘制钢筋线 ====================================
+            // ======================== 3.绘制钩子钢筋 ====================================
             /// ------ 绘制线钢筋 ---------
             /// SteelbarConnect            ------------- 钩子钢筋，格几个钢筋点布置一个钩子钢筋
             /// SteelbarConnectLoop           --- 忘记了，以后补充
             /// SteelbarLoopMutil         -----------  箍筋，比其他要复杂一些
 
+            /// 钩子钢筋  hook  --- 与点钢筋有对应关系，放在点钢筋边上    SteelConnect ,所以是几个点(nGap)布置一个钩子钢筋，如果不整除，程序自动调整，起终点都会固定布置一个钩子钢筋，但是可以通过设置，是否绘制起终点钩子钢筋
             /// 
-            // --- 钩子钢筋---- 左右都有箭头
+            /// --- 钩子钢筋标注---- （和其他钢筋标注不同点）左右都有箭头（在一边时要改进）
             //SteelbarConnectDimension dim4 = SteelDimFactory.CreateSteelConnectDimension(ist_ .CreateSteelConnectDimension(..,_)//
             /// SteelbarConnectDimension            ------------- 配合SteelbarConnect使用
 
