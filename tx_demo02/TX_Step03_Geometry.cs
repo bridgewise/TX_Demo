@@ -35,6 +35,7 @@ namespace TX_Demo
             Vector3d vectUnit = vect.GetNormal();       ///取单位向量
             Vector3d vectPer = vectUnit.RotateBy(Math.PI * 0.5, Vector3d.ZAxis);  ///向量的垂直，顺时针方向转90度
 
+            double angle = AcadAssist.AngleOnPlan(vectPer);                 ///向量的角度
 
             Point3d structPt2 = structPt1 + vectUnit.MultiplyBy(2000);      ///点可以是点和向量相加
             Point3d structPt3 = structPt1 + vectPer.MultiplyBy(2000);
@@ -77,6 +78,12 @@ namespace TX_Demo
             //pl3 = AcadAssist.MillarTxPolyline(pl3, 0);            ///曲线根据某个位置对称
             TxPolyline pl3 = AcadAssist.MillarTxPolyline(pl2, 0);  ///  曲线根据某个位置对称
 
+            Point3d testPnt = pl3.GetPoint3dAt(3);
+            double len = pl3.Length;
+            Point3d testPnt2 = pl3.GetPointAtDist(len * 0.3);
+            double distPnt3 = pl3.GetDistAtPoint(testPnt2);
+            Vector3d vect3 = AcadAssist.GetFirstDerivative(pl3, testPnt2);  ///切线
+            
 
             /// 多义线裁剪和延长
             //TxPolyline pl3 = AcadAssist.TrimPolylineGetFront(pl2, new Point3d(500, 500, 0));  ///  裁剪，求线的前面部分

@@ -24,7 +24,7 @@ namespace TX_Demo
         #region ShowForm
         public override string GetEntityShowName()
         {
-            return "我的构件033";
+            return "我的构件01";
         }
 
         public override int GetEntityShowIndex()

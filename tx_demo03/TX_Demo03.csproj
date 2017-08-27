@@ -98,6 +98,10 @@
       <DependentUpon>TX_Step03_Form.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="TX_Step04_Form.resx">
+      <DependentUpon>TX_Step04_Form.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -126,6 +130,9 @@
     <Compile Include="TX_Step02_Form.Designer.cs">
       <DependentUpon>TX_Step02_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="TX_Step03_SteelLM.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TX_Step03_Entity.cs" />
     <Compile Include="TX_Step03_Form.cs">
       <SubType>Form</SubType>
@@ -133,6 +140,14 @@
     <Compile Include="TX_Step03_Form.Designer.cs">
       <DependentUpon>TX_Step03_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="TX_Step04_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TX_Step04_Form.Designer.cs">
+      <DependentUpon>TX_Step04_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TX_Step03_SteelPM.cs" />
+    <Compile Include="TX_Step03_SteelDM.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
