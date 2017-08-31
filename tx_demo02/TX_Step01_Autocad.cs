@@ -33,7 +33,11 @@ namespace TX_Demo
             ed.WriteMessage("aaa");
 
 
-            PromptEntityResult prEntityRs = ed.GetEntity("选择线");
+            PromptEntityOptions prEntityOp = new PromptEntityOptions("选择线");
+            prEntityOp.AddAllowedClass(typeof(Curve), false);
+            prEntityOp.SetRejectMessage("选择的不是线");
+
+            PromptEntityResult prEntityRs = ed.GetEntity(prEntityOp);
             if (prEntityRs.Status != PromptStatus.OK) return;
 
 
