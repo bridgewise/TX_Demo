@@ -74,6 +74,7 @@ TX_BridgeWiseApp4/
 *.ncb
 *.pch
 *.gch
+*.sln
 *.slo
 *.suo
 *.sdf
@@ -89,3 +90,4 @@ TX_BridgeWiseApp4/
 *.config
 *.application
 *.manifest
+*.svnprops
